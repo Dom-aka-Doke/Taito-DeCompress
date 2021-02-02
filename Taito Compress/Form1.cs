@@ -61,8 +61,9 @@ namespace Taito_Compress
                                 foreach (byte c in block)
                                 {
                                     if (c == b) { byteCtr++; }
-                                    if (byteCtr > score) { mostCommonByte = b; score = byteCtr; }
                                 }
+
+                                if (byteCtr > score) { mostCommonByte = b; score = byteCtr; }
                             }
                         }
 
@@ -123,7 +124,6 @@ namespace Taito_Compress
                     MessageBox.Show("There's something going wrong!\n\nOnly decompressed files up to 2 MB are supported.");
                 }
             }
-
         }
     }
 }
