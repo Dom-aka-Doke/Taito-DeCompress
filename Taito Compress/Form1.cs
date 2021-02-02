@@ -32,7 +32,7 @@ namespace Taito_Compress
                     int blocks = decFile.Length / 32;
                     List<byte> compressedByteCodeList = new List<byte>();
                     byte[] numberOfBlocks = BitConverter.GetBytes(Convert.ToInt16(blocks));
-                    string saveFilePath = @selectFileDialog.FileName + ".cmp";
+                    string saveFilePath = Path.ChangeExtension(@selectFileDialog.FileName, ".cmp");
 
                     if (!BitConverter.IsLittleEndian) { Array.Reverse(numberOfBlocks); }
 
@@ -112,11 +112,22 @@ namespace Taito_Compress
                         foreach (byte b in compressedBlock) { compressedByteCodeList.Add(b); }
                     }
 
+                    if (File.Exists(saveFilePath))
+                    {
+                        DialogResult fileExistsDialogue = MessageBox.Show(saveFilePath + " already exisits!\n\nDo you want to proceed an overwrite this file?", "Attention!", MessageBoxButtons.YesNo);
+
+                        if (fileExistsDialogue == DialogResult.No)
+                        {
+                            return;
+                        }
+                    }
+
                     // Write compressed byte code to file
                     byte[] compressedByteCode = compressedByteCodeList.ToArray();
-                    File.WriteAllBytes(saveFilePath, compressedByteCode);
 
-                    MessageBox.Show("Successfully compressed!");
+                    File.WriteAllBytes(saveFilePath, compressedByteCode);
+                    
+                    MessageBox.Show("Successfully compressed!\n\nFile has been saved to: " + saveFilePath);
                 }
 
                 else
