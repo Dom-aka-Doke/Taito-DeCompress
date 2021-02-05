@@ -136,5 +136,36 @@ namespace Taito_Compress
                 }
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Select file dialogue
+            OpenFileDialog selectFileDialog = new OpenFileDialog();
+
+            selectFileDialog.Filter = "Compressed (*.cmp)|*.cmp;|" +
+                                     "All Files (*.*)|*.*";
+
+            // If successfully selected a file...
+            if (selectFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string loadFilePath = @selectFileDialog.FileName;
+                byte[] cmpFile = File.ReadAllBytes(loadFilePath);
+
+                List<byte> decompressedByteCodeList = new List<byte>();
+                string saveFilePath = Path.ChangeExtension(@selectFileDialog.FileName, ".dec");
+
+                // Get number of 32 byte blocks
+                byte[] byteBlocks = new byte[2];
+                byteBlocks[0] = cmpFile[1];
+                byteBlocks[1] = cmpFile[0];
+                int numberOfBlocks = BitConverter.ToInt32(byteBlocks, 0);
+
+                // Generate decompressed byte code
+                for (int i = 0; i < numberOfBlocks; i++)
+                {
+                    byte[] mostCommonByteAddresses = new byte[4];
+                }
+            }
+        }
     }
 }
