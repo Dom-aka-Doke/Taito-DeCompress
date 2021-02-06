@@ -154,17 +154,60 @@ namespace Taito_Compress
                 List<byte> decompressedByteCodeList = new List<byte>();
                 string saveFilePath = Path.ChangeExtension(@selectFileDialog.FileName, ".dec");
 
+                int bytePosition = 0;
+
                 // Get number of 32 byte blocks
                 byte[] byteBlocks = new byte[2];
-                byteBlocks[0] = cmpFile[1];
-                byteBlocks[1] = cmpFile[0];
-                int numberOfBlocks = BitConverter.ToInt32(byteBlocks, 0);
+                byteBlocks[0] = cmpFile[0];
+                byteBlocks[1] = cmpFile[1];
+                int numberOfBlocks = BitConverter.ToInt16(byteBlocks, 0);
+                bytePosition += 2;
 
                 // Generate decompressed byte code
                 for (int i = 0; i < numberOfBlocks; i++)
                 {
                     byte[] mostCommonByteAddresses = new byte[4];
+                    Buffer.BlockCopy(cmpFile, bytePosition, mostCommonByteAddresses, 0, 4);
+                    bytePosition += 4;
+
+                    if (!BitConverter.IsLittleEndian) { Array.Reverse(mostCommonByteAddresses); }
+                    BitArray mostCommonByteAddressesBitArray = new BitArray(mostCommonByteAddresses);
+
+                    byte[] mostCommonByte = { 0x00 };
+                    Buffer.BlockCopy(cmpFile, bytePosition, mostCommonByte, 0, 1);
+                    bytePosition++;
+
+                    foreach (bool b in mostCommonByteAddressesBitArray)
+                    {
+                        if (b)
+                        {
+                            decompressedByteCodeList.Add(mostCommonByte[0]);
+                        }
+
+                        else
+                        {
+                            decompressedByteCodeList.Add(cmpFile[bytePosition]);
+                            bytePosition++;
+                        }
+                    }
                 }
+
+                if (File.Exists(saveFilePath))
+                {
+                    DialogResult fileExistsDialogue = MessageBox.Show(saveFilePath + " already exisits!\n\nDo you want to proceed an overwrite this file?", "Attention!", MessageBoxButtons.YesNo);
+
+                    if (fileExistsDialogue == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
+
+                // Write compressed byte code to file
+                byte[] decompressedByteCode = decompressedByteCodeList.ToArray();
+
+                File.WriteAllBytes(saveFilePath, decompressedByteCode);
+
+                MessageBox.Show("Successfully decompressed!\n\nFile has been saved to: " + saveFilePath);
             }
         }
     }
