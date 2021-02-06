@@ -157,10 +157,7 @@ namespace Taito_Compress
                 int bytePosition = 0;
 
                 // Get number of 32 byte blocks
-                byte[] byteBlocks = new byte[2];
-                byteBlocks[0] = cmpFile[0];
-                byteBlocks[1] = cmpFile[1];
-                int numberOfBlocks = BitConverter.ToInt16(byteBlocks, 0);
+                int numberOfBlocks = BitConverter.ToInt16(cmpFile, 0);
                 bytePosition += 2;
 
                 // Generate decompressed byte code
