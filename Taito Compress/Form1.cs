@@ -112,6 +112,7 @@ namespace Taito_Compress
                         foreach (byte b in compressedBlock) { compressedByteCodeList.Add(b); }
                     }
 
+                    // Check if file already exists
                     if (File.Exists(saveFilePath))
                     {
                         DialogResult fileExistsDialogue = MessageBox.Show(saveFilePath + " already exisits!\n\nDo you want to proceed an overwrite this file?", "Attention!", MessageBoxButtons.YesNo);
@@ -142,7 +143,7 @@ namespace Taito_Compress
             // Select file dialogue
             OpenFileDialog selectFileDialog = new OpenFileDialog();
 
-            selectFileDialog.Filter = "Compressed (*.cmp)|*.cmp;|" +
+            selectFileDialog.Filter = "Compressed (*.cmp;*.hex)|*.cmp;*.hex;|" +
                                      "All Files (*.*)|*.*";
 
             // If successfully selected a file...
@@ -163,17 +164,26 @@ namespace Taito_Compress
                 // Generate decompressed byte code
                 for (int i = 0; i < numberOfBlocks; i++)
                 {
+                    // Get addresses of most common byte
                     byte[] mostCommonByteAddresses = new byte[4];
                     Buffer.BlockCopy(cmpFile, bytePosition, mostCommonByteAddresses, 0, 4);
                     bytePosition += 4;
 
-                    if (!BitConverter.IsLittleEndian) { Array.Reverse(mostCommonByteAddresses); }
+                    // Reverse mostCommonByteAddresses because BitArray is little endian
+                    mostCommonByteAddresses[0] = reverseByte(mostCommonByteAddresses[0]);
+                    mostCommonByteAddresses[1] = reverseByte(mostCommonByteAddresses[1]);
+                    mostCommonByteAddresses[2] = reverseByte(mostCommonByteAddresses[2]);
+                    mostCommonByteAddresses[3] = reverseByte(mostCommonByteAddresses[3]);
+
+                    // Create BitArray for processing generation of decompressed byte code
                     BitArray mostCommonByteAddressesBitArray = new BitArray(mostCommonByteAddresses);
 
+                    // Get most common byte
                     byte[] mostCommonByte = { 0x00 };
                     Buffer.BlockCopy(cmpFile, bytePosition, mostCommonByte, 0, 1);
                     bytePosition++;
 
+                    // Generate decompressed data
                     foreach (bool b in mostCommonByteAddressesBitArray)
                     {
                         if (b)
@@ -189,6 +199,7 @@ namespace Taito_Compress
                     }
                 }
 
+                // Check if file already exists
                 if (File.Exists(saveFilePath))
                 {
                     DialogResult fileExistsDialogue = MessageBox.Show(saveFilePath + " already exisits!\n\nDo you want to proceed an overwrite this file?", "Attention!", MessageBoxButtons.YesNo);
@@ -206,6 +217,27 @@ namespace Taito_Compress
 
                 MessageBox.Show("Successfully decompressed!\n\nFile has been saved to: " + saveFilePath);
             }
+        }
+
+        private byte reverseByte(byte b)
+        {
+            int rByte = 0;
+
+            for (int i = 0; i < 8; i++)
+            {
+                if ((b & (1 << i)) != 0)
+                {
+                    rByte |= 1 << (7 - i);
+                }
+            }
+
+            return (byte)rByte;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FormAbout formAbout = new FormAbout();
+            formAbout.Show();
         }
     }
 }
