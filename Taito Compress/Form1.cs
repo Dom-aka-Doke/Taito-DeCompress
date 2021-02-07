@@ -160,7 +160,6 @@ namespace Taito_Compress
                 if (textBox1.Text.StartsWith("0x"))
                 {
                     bytePosition = Convert.ToInt32(textBox1.Text, 16);
-                    MessageBox.Show("Starting at: " + bytePosition);
                 }
 
                 // Get number of 32 byte blocks
