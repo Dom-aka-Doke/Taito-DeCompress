@@ -143,7 +143,7 @@ namespace Taito_Compress
             // Select file dialogue
             OpenFileDialog selectFileDialog = new OpenFileDialog();
 
-            selectFileDialog.Filter = "Compressed (*.cmp;*.hex)|*.cmp;*.hex;|" +
+            selectFileDialog.Filter = "Compressed (*.sfc;*.smc;*.cmp;*.hex)|*.sfc;*.smc;*.cmp;*.hex;|" +
                                      "All Files (*.*)|*.*";
 
             // If successfully selected a file...
@@ -156,6 +156,12 @@ namespace Taito_Compress
                 string saveFilePath = Path.ChangeExtension(@selectFileDialog.FileName, ".dec");
 
                 int bytePosition = 0;
+
+                if (textBox1.Text.StartsWith("0x"))
+                {
+                    bytePosition = Convert.ToInt32(textBox1.Text, 16);
+                    MessageBox.Show("Starting at: " + bytePosition);
+                }
 
                 // Get number of 32 byte blocks
                 int numberOfBlocks = BitConverter.ToInt16(cmpFile, 0);
