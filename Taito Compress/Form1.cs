@@ -34,6 +34,7 @@ namespace Taito_Compress
                     List<byte> compressedByteCodeList = new List<byte>();
                     byte[] numberOfBlocks = BitConverter.GetBytes(Convert.ToInt16(blocks));
                     string saveFilePath = Path.ChangeExtension(@selectFileDialog.FileName, ".cmp");
+                    saveFilePath = saveFilePath.Replace("_decompressed_", "_compressed_");
 
                     if (!BitConverter.IsLittleEndian) { Array.Reverse(numberOfBlocks); }
 
@@ -165,7 +166,6 @@ namespace Taito_Compress
                 byte[] cmpFile = File.ReadAllBytes(loadFilePath);
 
                 List<byte> decompressedByteCodeList = new List<byte>();
-                string saveFilePath = Path.ChangeExtension(@selectFileDialog.FileName, ".dec");
 
                 int bytePosition = 0;
 
@@ -173,6 +173,11 @@ namespace Taito_Compress
                 {
                     bytePosition = Convert.ToInt32(textBox1.Text, 16);
                 }
+
+                string saveDir = Path.GetDirectoryName(@selectFileDialog.FileName);
+                string saveFileName = textBox1.Text + "_decompressed_" + Path.GetFileNameWithoutExtension(loadFilePath);
+                string saveFileExt = ".dec";
+                string saveFilePath = Path.Combine(saveDir, saveFileName + saveFileExt);
 
                 // Get number of 32 byte blocks
                 byte[] byteNumberOfBlocks = { cmpFile[bytePosition], cmpFile[bytePosition + 1] };
