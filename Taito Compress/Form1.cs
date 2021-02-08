@@ -142,17 +142,6 @@ namespace Taito_Compress
 
         private void button2_Click(object sender, EventArgs e)
         {
-            // Check if Offset in legit hex code
-            /*
-            string hexPattern = @"^(0x)[A-Fa-f0-9]{1,}";
-            Regex regexHex = new Regex(hexPattern);
-            
-            if (regexHex.Matches(textBox1.Text).Count != 1 && regexHex.Matches(textBox1.Text)[0].Length != textBox1.Text.Length)
-            {
-                MessageBox.Show("Please insert only valid hex offset");
-                return;
-            }
-            */
             // Select file dialogue
             OpenFileDialog selectFileDialog = new OpenFileDialog();
 
