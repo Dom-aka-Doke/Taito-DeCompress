@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Taito_Compress
@@ -33,8 +32,11 @@ namespace Taito_Compress
                     int blocks = decFile.Length / 32;
                     List<byte> compressedByteCodeList = new List<byte>();
                     byte[] numberOfBlocks = BitConverter.GetBytes(Convert.ToInt16(blocks));
-                    string saveFilePath = Path.ChangeExtension(@selectFileDialog.FileName, ".cmp");
-                    saveFilePath = saveFilePath.Replace("_decompressed_", "_compressed_");
+
+                    string saveDir = Path.GetDirectoryName(@selectFileDialog.FileName);
+                    string saveFileName = Path.GetFileNameWithoutExtension(loadFilePath).Replace("_decompressed_", "_compressed_");
+                    string saveFileExt = ".cmp";
+                    string saveFilePath = Path.Combine(saveDir, saveFileName + saveFileExt);
 
                     if (!BitConverter.IsLittleEndian) { Array.Reverse(numberOfBlocks); }
 
@@ -157,16 +159,13 @@ namespace Taito_Compress
                 List<byte> decompressedByteCodeList = new List<byte>();
 
                 int bytePosition = 0;
+                int startOffset = 0;
 
                 if (textBox1.Text.StartsWith("0x"))
                 {
                     bytePosition = Convert.ToInt32(textBox1.Text, 16);
+                    startOffset = Convert.ToInt32(textBox1.Text, 16);
                 }
-
-                string saveDir = Path.GetDirectoryName(@selectFileDialog.FileName);
-                string saveFileName = textBox1.Text + "_decompressed_" + Path.GetFileNameWithoutExtension(loadFilePath);
-                string saveFileExt = ".dec";
-                string saveFilePath = Path.Combine(saveDir, saveFileName + saveFileExt);
 
                 // Get number of 32 byte blocks
                 byte[] byteNumberOfBlocks = { cmpFile[bytePosition], cmpFile[bytePosition + 1] };
@@ -210,6 +209,12 @@ namespace Taito_Compress
                         }
                     }
                 }
+
+                int cmpSize = bytePosition - startOffset;
+                string saveDir = Path.GetDirectoryName(@selectFileDialog.FileName);
+                string saveFileName = textBox1.Text + "_decompressed_" + Path.GetFileNameWithoutExtension(loadFilePath) + "_[" + cmpSize + "]";
+                string saveFileExt = ".dec";
+                string saveFilePath = Path.Combine(saveDir, saveFileName + saveFileExt);
 
                 // Check if file already exists
                 if (File.Exists(saveFilePath))
