@@ -8,18 +8,26 @@ namespace Taito_Compress
 {
     public partial class Form1 : Form
     {
+        byte[] rom;
+        byte[] cmp;
+        string romFilePath;
+        string insertFilePath;
+
         public Form1()
         {
             InitializeComponent();
+
+            buttonInsert.Enabled = false;
+            buttonLoadCMP.Enabled = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonCompress_Click(object sender, EventArgs e)
         {
             // Select file dialogue
             OpenFileDialog selectFileDialog = new OpenFileDialog();
 
             selectFileDialog.Filter = "Decompressed (*.dec)|*.dec;|" +
-                                     "All Files (*.*)|*.*";
+                                      "All Files (*.*)|*.*";
 
             // If successfully selected a file...
             if (selectFileDialog.ShowDialog() == DialogResult.OK)
@@ -142,13 +150,13 @@ namespace Taito_Compress
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonDecompress_Click(object sender, EventArgs e)
         {
             // Select file dialogue
             OpenFileDialog selectFileDialog = new OpenFileDialog();
 
             selectFileDialog.Filter = "Compressed (*.sfc;*.smc;*.cmp;*.hex)|*.sfc;*.smc;*.cmp;*.hex;|" +
-                                     "All Files (*.*)|*.*";
+                                      "All Files (*.*)|*.*";
 
             // If successfully selected a file...
             if (selectFileDialog.ShowDialog() == DialogResult.OK)
@@ -161,10 +169,10 @@ namespace Taito_Compress
                 int bytePosition = 0;
                 int startOffset = 0;
 
-                if (textBox1.Text.StartsWith("0x"))
+                if (textBoxDecOffset.Text.StartsWith("0x"))
                 {
-                    bytePosition = Convert.ToInt32(textBox1.Text, 16);
-                    startOffset = Convert.ToInt32(textBox1.Text, 16);
+                    bytePosition = Convert.ToInt32(textBoxDecOffset.Text, 16);
+                    startOffset = Convert.ToInt32(textBoxDecOffset.Text, 16);
                 }
 
                 // Get number of 32 byte blocks
@@ -212,7 +220,7 @@ namespace Taito_Compress
 
                 int cmpSize = bytePosition - startOffset;
                 string saveDir = Path.GetDirectoryName(@selectFileDialog.FileName);
-                string saveFileName = textBox1.Text + "_decompressed_" + Path.GetFileNameWithoutExtension(loadFilePath) + "_[" + cmpSize + "]";
+                string saveFileName = textBoxDecOffset.Text + "_decompressed_" + Path.GetFileNameWithoutExtension(loadFilePath).Replace("_","-") + "_[" + cmpSize + "]";
                 string saveFileExt = ".dec";
                 string saveFilePath = Path.Combine(saveDir, saveFileName + saveFileExt);
 
@@ -251,10 +259,91 @@ namespace Taito_Compress
             return (byte)rByte;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void buttonAbout_Click(object sender, EventArgs e)
         {
             FormAbout formAbout = new FormAbout();
             formAbout.Show();
+        }
+
+        private void buttonLoadCMP_Click(object sender, EventArgs e)
+        {
+            // Select file dialogue
+            OpenFileDialog selectFileDialog = new OpenFileDialog();
+
+            selectFileDialog.Filter = "Compressed (*.cmp)|*.cmp;|" +
+                                      "All Files (*.*)|*.*";
+
+            // If successfully selected a file...
+            if (selectFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                insertFilePath = @selectFileDialog.FileName;
+                cmp = File.ReadAllBytes(insertFilePath);
+                int cmpSize = 0;
+
+                string[] splitFilename = Path.GetFileNameWithoutExtension(insertFilePath).Split('_');
+
+                if (splitFilename.Length < 3)
+                {
+                    MessageBox.Show("Wrong format of file name!\nPlease only load files created by TAITO Compress!");
+                    buttonInsert.Enabled = false;
+                    return;
+                }
+                    
+                if (splitFilename[0].StartsWith("0x"))
+                {
+                    textBoxInsertOffset.Text = splitFilename[0];
+                }
+
+                else
+                {
+                    MessageBox.Show("File name contains invalid offset!\nPlease only load files created by TAITO Compress!");
+                    buttonInsert.Enabled = false;
+                    return;
+                }
+
+                if (!int.TryParse(splitFilename[3].Replace("[","").Replace("]",""), out cmpSize))
+                {
+                    MessageBox.Show("File name contains invalid size for compressed file!\nPlease only load files created by TAITO Compress!");
+                    buttonInsert.Enabled = false;
+                    return;
+                }
+
+                if (cmp.Length > cmpSize)
+                {
+                    MessageBox.Show("Compressed file is too large for inserting into originally offset!\nPlease insert manually using another offset with enough space!");
+                    buttonInsert.Enabled = false;
+                    return;
+                }
+
+                buttonInsert.Enabled = true;
+            }
+        }
+
+        private void buttonInsert_Click(object sender, EventArgs e)
+        {
+            int startOffset = Convert.ToInt32(textBoxInsertOffset.Text, 16);
+
+            Buffer.BlockCopy(cmp, 0, rom, startOffset, cmp.Length);
+            File.WriteAllBytes(romFilePath, rom);
+            MessageBox.Show("Inserted compressed code successfully into ROM!\n\nFile has been saved to: " + romFilePath);
+        }
+
+        private void buttonLoadROM_Click(object sender, EventArgs e)
+        {
+            // Select file dialogue
+            OpenFileDialog selectFileDialog = new OpenFileDialog();
+
+            selectFileDialog.Filter = "ROMs (*.sfc;*.smc)|*.sfc;*.smc;|" +
+                                      "All Files (*.*)|*.*";
+
+            // If successfully selected a file...
+            if (selectFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                romFilePath = @selectFileDialog.FileName;
+                rom = File.ReadAllBytes(romFilePath);
+
+                buttonLoadCMP.Enabled = true;
+            }
         }
     }
 }

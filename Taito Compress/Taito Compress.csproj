@@ -96,6 +96,7 @@
     <None Include="Graphics\Bub.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Graphics\open.ico" />
     <Content Include="logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
