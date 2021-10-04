@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Taito_Compress.Properties {
+namespace Taito_DeCompress.Properties {
     using System;
     
     

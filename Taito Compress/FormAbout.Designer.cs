@@ -1,4 +1,4 @@
-﻿namespace Taito_Compress
+﻿namespace Taito_DeCompress
 {
     partial class FormAbout
     {
@@ -75,7 +75,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormAbout";
-            this.Text = "About TAITO Compress";
+            this.Text = "About TAITO DeCompress";
             this.ResumeLayout(false);
             this.PerformLayout();
 

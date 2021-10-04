@@ -1,0 +1,49 @@
+Set breakpoint to $8F/8EC2
+
+[Address]	[Offset]	[Description]
+------------------------------------------------------------------
+$8E:93DA	0x713DA		taito logo
+
+$8A:F509	0x57509		character set (font)
+$89:AE3C	0x4AE3C 	dragon
+$8E:9EE7	0x71EE7 	logo
+$8D:EE71	0x6EE71		star
+$89:A096	0x4A096		bub bob in / dragon sprites
+
+MENU
+
+$8A:FF2C	0x57F2C
+$8A:FAAF	0x57AAF
+$8D:8000	0x68000
+$89:F9A1	0x4F9A1
+$89:8000	0x48000
+$8A:F509	0x57509
+$82:A634	0x12634
+
+GAME START
+
+$82:D3DF	0x153DF		numbers and match original
+$82:8BB5	0x10BB5		2*2 lettering
+$86:8000	0x30000		bag, NEXT, upper frame
+$86:88CB	0x308CB		side frame
+$86:8BD3	0x30BD3		background (blocks)
+$86:89F7	0x309F7		filling compound when pushing field down
+$82:A634	0x12634		sprites dragon bubble numbers
+
+
+$82:D3DF	0x153DF		numbers and match original
+$82:8BB5	0x10BB5		2*2 lettering
+$88:8000	0x40000		bag, NEXT, upper frame
+$88:860B	0x4060B		side frame
+$88:886A	0x4086A		background (gears)
+$88:86E1	0x406E1		filling compound when pushing field down
+$82:A634	0x12634		sprites dragon bubble numbers
+
+
+$82:D3DF	0x153DF		numbers and match original
+$82:8BB5	0x10BB5		2*2 lettering
+$86:CF0F	0x34F0F		bag, NEXT, upper frame
+$86:D792	0x35792		side frame
+$86:DA26	0x35A26		background (trees)
+$86:D86A	0x3586A		filling compound when pushing field down
+$82:A634	0x12634		sprites dragon bubble numbers

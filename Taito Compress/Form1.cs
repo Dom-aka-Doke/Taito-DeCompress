@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
-namespace Taito_Compress
+namespace Taito_DeCompress
 {
     public partial class Form1 : Form
     {

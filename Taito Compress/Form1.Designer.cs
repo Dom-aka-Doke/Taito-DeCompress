@@ -1,5 +1,5 @@
 ﻿
-namespace Taito_Compress
+namespace Taito_DeCompress
 {
     partial class Form1
     {
@@ -99,7 +99,7 @@ namespace Taito_Compress
             // 
             // buttonLoadCMP
             // 
-            this.buttonLoadCMP.Image = global::Taito_Compress.Properties.Resources.open;
+            this.buttonLoadCMP.Image = global::Taito_DeCompress.Properties.Resources.open;
             this.buttonLoadCMP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonLoadCMP.Location = new System.Drawing.Point(78, 70);
             this.buttonLoadCMP.Name = "buttonLoadCMP";
@@ -112,7 +112,7 @@ namespace Taito_Compress
             // 
             // buttonLoadROM
             // 
-            this.buttonLoadROM.Image = global::Taito_Compress.Properties.Resources.open;
+            this.buttonLoadROM.Image = global::Taito_DeCompress.Properties.Resources.open;
             this.buttonLoadROM.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonLoadROM.Location = new System.Drawing.Point(12, 70);
             this.buttonLoadROM.Name = "buttonLoadROM";
@@ -140,7 +140,7 @@ namespace Taito_Compress
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "TAITO Compress v1.0";
+            this.Text = "TAITO DeCompress v1.0";
             this.ResumeLayout(false);
             this.PerformLayout();
 

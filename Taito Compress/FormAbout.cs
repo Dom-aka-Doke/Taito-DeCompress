@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Taito_Compress
+namespace Taito_DeCompress
 {
     public partial class FormAbout : Form
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Taito_Compress
+namespace Taito_DeCompress
 {
     static class Program
     {
