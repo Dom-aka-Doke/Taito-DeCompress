@@ -36,14 +36,16 @@ namespace Taito_DeCompress
             this.buttonInsert = new System.Windows.Forms.Button();
             this.buttonLoadROM = new System.Windows.Forms.Button();
             this.buttonLoadOffsetFile = new System.Windows.Forms.Button();
+            this.checkBoxBackup = new System.Windows.Forms.CheckBox();
+            this.checkBoxOverwrite = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // buttonCompress
             // 
             this.buttonCompress.Enabled = false;
-            this.buttonCompress.Location = new System.Drawing.Point(12, 71);
+            this.buttonCompress.Location = new System.Drawing.Point(12, 94);
             this.buttonCompress.Name = "buttonCompress";
-            this.buttonCompress.Size = new System.Drawing.Size(234, 23);
+            this.buttonCompress.Size = new System.Drawing.Size(273, 23);
             this.buttonCompress.TabIndex = 0;
             this.buttonCompress.Text = "Compress";
             this.buttonCompress.UseVisualStyleBackColor = true;
@@ -52,9 +54,9 @@ namespace Taito_DeCompress
             // buttonDecompress
             // 
             this.buttonDecompress.Enabled = false;
-            this.buttonDecompress.Location = new System.Drawing.Point(12, 42);
+            this.buttonDecompress.Location = new System.Drawing.Point(12, 65);
             this.buttonDecompress.Name = "buttonDecompress";
-            this.buttonDecompress.Size = new System.Drawing.Size(234, 23);
+            this.buttonDecompress.Size = new System.Drawing.Size(273, 23);
             this.buttonDecompress.TabIndex = 1;
             this.buttonDecompress.Text = "Decompress";
             this.buttonDecompress.UseVisualStyleBackColor = true;
@@ -62,9 +64,9 @@ namespace Taito_DeCompress
             // 
             // buttonAbout
             // 
-            this.buttonAbout.Location = new System.Drawing.Point(12, 128);
+            this.buttonAbout.Location = new System.Drawing.Point(12, 151);
             this.buttonAbout.Name = "buttonAbout";
-            this.buttonAbout.Size = new System.Drawing.Size(234, 23);
+            this.buttonAbout.Size = new System.Drawing.Size(273, 23);
             this.buttonAbout.TabIndex = 2;
             this.buttonAbout.Text = "About";
             this.buttonAbout.UseVisualStyleBackColor = true;
@@ -73,9 +75,9 @@ namespace Taito_DeCompress
             // buttonInsert
             // 
             this.buttonInsert.Enabled = false;
-            this.buttonInsert.Location = new System.Drawing.Point(12, 100);
+            this.buttonInsert.Location = new System.Drawing.Point(12, 123);
             this.buttonInsert.Name = "buttonInsert";
-            this.buttonInsert.Size = new System.Drawing.Size(234, 22);
+            this.buttonInsert.Size = new System.Drawing.Size(273, 22);
             this.buttonInsert.TabIndex = 7;
             this.buttonInsert.Text = "Insert";
             this.buttonInsert.UseVisualStyleBackColor = true;
@@ -87,10 +89,9 @@ namespace Taito_DeCompress
             this.buttonLoadROM.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonLoadROM.Location = new System.Drawing.Point(12, 12);
             this.buttonLoadROM.Name = "buttonLoadROM";
-            this.buttonLoadROM.Size = new System.Drawing.Size(98, 24);
+            this.buttonLoadROM.Size = new System.Drawing.Size(130, 24);
             this.buttonLoadROM.TabIndex = 4;
             this.buttonLoadROM.Text = "Load ROM";
-            this.buttonLoadROM.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonLoadROM.UseVisualStyleBackColor = true;
             this.buttonLoadROM.Click += new System.EventHandler(this.buttonLoadROM_Click);
             // 
@@ -99,20 +100,40 @@ namespace Taito_DeCompress
             this.buttonLoadOffsetFile.Enabled = false;
             this.buttonLoadOffsetFile.Image = global::Taito_Compress.Properties.Resources.table;
             this.buttonLoadOffsetFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonLoadOffsetFile.Location = new System.Drawing.Point(116, 12);
+            this.buttonLoadOffsetFile.Location = new System.Drawing.Point(155, 12);
             this.buttonLoadOffsetFile.Name = "buttonLoadOffsetFile";
             this.buttonLoadOffsetFile.Size = new System.Drawing.Size(130, 24);
             this.buttonLoadOffsetFile.TabIndex = 8;
             this.buttonLoadOffsetFile.Text = "Load offset table";
-            this.buttonLoadOffsetFile.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonLoadOffsetFile.UseVisualStyleBackColor = true;
             this.buttonLoadOffsetFile.Click += new System.EventHandler(this.buttonLoadOffsetFile_Click);
+            // 
+            // checkBoxBackup
+            // 
+            this.checkBoxBackup.AutoSize = true;
+            this.checkBoxBackup.Location = new System.Drawing.Point(12, 42);
+            this.checkBoxBackup.Name = "checkBoxBackup";
+            this.checkBoxBackup.Size = new System.Drawing.Size(91, 17);
+            this.checkBoxBackup.TabIndex = 9;
+            this.checkBoxBackup.Text = "Backup ROM";
+            this.checkBoxBackup.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxOverwrite
+            // 
+            this.checkBoxOverwrite.Location = new System.Drawing.Point(119, 38);
+            this.checkBoxOverwrite.Name = "checkBoxOverwrite";
+            this.checkBoxOverwrite.Size = new System.Drawing.Size(166, 24);
+            this.checkBoxOverwrite.TabIndex = 10;
+            this.checkBoxOverwrite.Text = "Overwrite Files without asking";
+            this.checkBoxOverwrite.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(258, 160);
+            this.ClientSize = new System.Drawing.Size(297, 182);
+            this.Controls.Add(this.checkBoxOverwrite);
+            this.Controls.Add(this.checkBoxBackup);
             this.Controls.Add(this.buttonLoadOffsetFile);
             this.Controls.Add(this.buttonInsert);
             this.Controls.Add(this.buttonLoadROM);
@@ -125,6 +146,7 @@ namespace Taito_DeCompress
             this.Name = "Form1";
             this.Text = "TAITO DeCompress v1.0";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -136,6 +158,8 @@ namespace Taito_DeCompress
         private System.Windows.Forms.Button buttonLoadROM;
         private System.Windows.Forms.Button buttonInsert;
         private System.Windows.Forms.Button buttonLoadOffsetFile;
+        private System.Windows.Forms.CheckBox checkBoxBackup;
+        private System.Windows.Forms.CheckBox checkBoxOverwrite;
     }
 }
 
