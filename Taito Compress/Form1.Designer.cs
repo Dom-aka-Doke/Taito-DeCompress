@@ -124,7 +124,7 @@ namespace Taito_DeCompress
             this.checkBoxOverwrite.Name = "checkBoxOverwrite";
             this.checkBoxOverwrite.Size = new System.Drawing.Size(166, 24);
             this.checkBoxOverwrite.TabIndex = 10;
-            this.checkBoxOverwrite.Text = "Overwrite Files without asking";
+            this.checkBoxOverwrite.Text = "Overwrite files without asking";
             this.checkBoxOverwrite.UseVisualStyleBackColor = true;
             // 
             // Form1
