@@ -31,6 +31,11 @@ namespace Taito_DeCompress
 
         private void buttonInsert_Click(object sender, EventArgs e)
         {
+            if (checkBoxBackup.Checked && !File.Exists(romFilePath + ".bak"))
+            {
+                File.WriteAllBytes(romFilePath + ".bak", rom);
+            }
+
             Data.Insert(ref rom, offsets, romFilePath);
         }
 
@@ -115,6 +120,11 @@ namespace Taito_DeCompress
         {
             FormAbout formAbout = new FormAbout();
             formAbout.Show();
+        }
+
+        private void buttonExit_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

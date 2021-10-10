@@ -38,6 +38,7 @@ namespace Taito_DeCompress
             this.buttonLoadOffsetFile = new System.Windows.Forms.Button();
             this.checkBoxBackup = new System.Windows.Forms.CheckBox();
             this.checkBoxOverwrite = new System.Windows.Forms.CheckBox();
+            this.buttonExit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonCompress
@@ -127,11 +128,22 @@ namespace Taito_DeCompress
             this.checkBoxOverwrite.Text = "Overwrite files without asking";
             this.checkBoxOverwrite.UseVisualStyleBackColor = true;
             // 
+            // buttonExit
+            // 
+            this.buttonExit.Location = new System.Drawing.Point(12, 180);
+            this.buttonExit.Name = "buttonExit";
+            this.buttonExit.Size = new System.Drawing.Size(273, 23);
+            this.buttonExit.TabIndex = 11;
+            this.buttonExit.Text = "Exit";
+            this.buttonExit.UseVisualStyleBackColor = true;
+            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(297, 182);
+            this.ClientSize = new System.Drawing.Size(297, 211);
+            this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.checkBoxOverwrite);
             this.Controls.Add(this.checkBoxBackup);
             this.Controls.Add(this.buttonLoadOffsetFile);
@@ -160,6 +172,7 @@ namespace Taito_DeCompress
         private System.Windows.Forms.Button buttonLoadOffsetFile;
         private System.Windows.Forms.CheckBox checkBoxBackup;
         private System.Windows.Forms.CheckBox checkBoxOverwrite;
+        private System.Windows.Forms.Button buttonExit;
     }
 }
 
