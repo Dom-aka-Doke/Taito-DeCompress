@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7EC015DE-5E12-4993-ACC4-F09A4A66E788}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Taito_Compress</RootNamespace>
-    <AssemblyName>Taito Compress</AssemblyName>
+    <RootNamespace>Taito_DeCompress</RootNamespace>
+    <AssemblyName>Taito DeCompress</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

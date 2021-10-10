@@ -99,7 +99,7 @@ namespace Taito_DeCompress
             // buttonLoadOffsetFile
             // 
             this.buttonLoadOffsetFile.Enabled = false;
-            this.buttonLoadOffsetFile.Image = global::Taito_Compress.Properties.Resources.table;
+            this.buttonLoadOffsetFile.Image = global::Taito_DeCompress.Properties.Resources.table;
             this.buttonLoadOffsetFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonLoadOffsetFile.Location = new System.Drawing.Point(155, 12);
             this.buttonLoadOffsetFile.Name = "buttonLoadOffsetFile";
