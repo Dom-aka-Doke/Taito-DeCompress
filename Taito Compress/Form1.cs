@@ -89,12 +89,12 @@ namespace Taito_DeCompress
 
                     catch
                     {
-                        if (!Directory.Exists($@"{Path.GetDirectoryName(romFilePath)}\{Path.GetFileNameWithoutExtension(romFilePath)}"))
+                        if (!Directory.Exists(Path.Combine(Path.GetDirectoryName(romFilePath), Path.GetFileNameWithoutExtension(romFilePath))))
                         {
-                            Directory.CreateDirectory($@"{Path.GetDirectoryName(romFilePath)}\{Path.GetFileNameWithoutExtension(romFilePath)}");
+                            Directory.CreateDirectory(Path.Combine(Path.GetDirectoryName(romFilePath), Path.GetFileNameWithoutExtension(romFilePath)));
                         }
 
-                        File.AppendAllText($@"{Path.GetDirectoryName(romFilePath)}\{Path.GetFileNameWithoutExtension(romFilePath)}\errorlog.log",$"[{DateTime.Now}] Failed to parse line {lineNo} into hexadecimal offset. Please use following notation: 0x012DEF. You are allowed to comment by using ;" + Environment.NewLine);
+                        File.AppendAllText(Path.Combine(Path.GetDirectoryName(romFilePath), Path.GetFileNameWithoutExtension(romFilePath), "errorlog.log"), $"[{DateTime.Now}] Failed to parse line {lineNo} into hexadecimal offset. Please use following notation: 0x012DEF. You are allowed to comment by using ;" + Environment.NewLine);
                         errorCtr++;
                     }
 
@@ -103,12 +103,12 @@ namespace Taito_DeCompress
 
                 if (errorCtr > 0)
                 {
-                    MessageBox.Show("Some errors occured while reading offset file.\nFor details go to " + $@"{Path.GetDirectoryName(romFilePath)}\{Path.GetFileNameWithoutExtension(romFilePath)}" + " and check 'errorlog.log'.");
+                    MessageBox.Show("Some errors occured while reading offset file.\nFor details go to " + Path.Combine(Path.GetDirectoryName(romFilePath), Path.GetFileNameWithoutExtension(romFilePath)) + " and check 'errorlog.log'.");
                 }
 
                 buttonDecompress.Enabled = true;
                 
-                if (Directory.Exists(Path.GetDirectoryName(romFilePath) + $@"\{Path.GetFileNameWithoutExtension(romFilePath)}\_decompressed"))
+                if (Directory.Exists(Path.Combine(Path.GetDirectoryName(romFilePath), Path.GetFileNameWithoutExtension(romFilePath), "_decompressed")))
                 {
                     buttonCompress.Enabled = true;
                     buttonInsert.Enabled = true;

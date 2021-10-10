@@ -11,7 +11,7 @@ namespace Taito_DeCompress
     {
         public static void Decompress(ref byte[] rom, List<int> offsets, string romFilePath, bool overwrite)
         {
-            string saveDir = Path.GetDirectoryName(romFilePath) + $@"\{Path.GetFileNameWithoutExtension(romFilePath)}\_decompressed";
+            string saveDir = Path.Combine(Path.GetDirectoryName(romFilePath), Path.GetFileNameWithoutExtension(romFilePath), "_decompressed");
 
             if (!Directory.Exists(saveDir))
             {
@@ -93,9 +93,9 @@ namespace Taito_DeCompress
 
         public static void Compress(string romFilePath, List<int> offsets, bool overwrite)
         {
-            string decompDir = Path.GetDirectoryName(romFilePath) + $@"\{Path.GetFileNameWithoutExtension(romFilePath)}\_decompressed";
+            string decompDir = Path.Combine(Path.GetDirectoryName(romFilePath), Path.GetFileNameWithoutExtension(romFilePath), "_decompressed");
 
-            if(Directory.Exists(decompDir))
+            if (Directory.Exists(decompDir))
             {
                 string[] files = Directory.GetFiles(decompDir);
                 List<string> decFiles = new List<string>();
@@ -118,7 +118,7 @@ namespace Taito_DeCompress
 
                 if (decFiles.Any())
                 {
-                    string saveDir = Path.GetDirectoryName(romFilePath) + $@"\{Path.GetFileNameWithoutExtension(romFilePath)}\_compressed";
+                    string saveDir = Path.Combine(Path.GetDirectoryName(romFilePath), Path.GetFileNameWithoutExtension(romFilePath), "_compressed");
 
                     if (!Directory.Exists(saveDir))
                     {
@@ -252,7 +252,7 @@ namespace Taito_DeCompress
 
         public static void Insert(ref byte[] rom, List<int> offsets, string romFilePath)
         {
-            string cmpDir = Path.GetDirectoryName(romFilePath) + $@"\{Path.GetFileNameWithoutExtension(romFilePath)}\_compressed";
+            string cmpDir = Path.Combine(Path.GetDirectoryName(romFilePath), Path.GetFileNameWithoutExtension(romFilePath), "_compressed");
 
             if (Directory.Exists(cmpDir))
             {
@@ -289,12 +289,12 @@ namespace Taito_DeCompress
 
                             else
                             {
-                                if (!Directory.Exists($@"{Path.GetDirectoryName(romFilePath)}\{Path.GetFileNameWithoutExtension(romFilePath)}"))
+                                if (!Directory.Exists(Path.Combine(Path.GetDirectoryName(romFilePath), Path.GetFileNameWithoutExtension(romFilePath))))
                                 {
-                                    Directory.CreateDirectory($@"{Path.GetDirectoryName(romFilePath)}\{Path.GetFileNameWithoutExtension(romFilePath)}");
+                                    Directory.CreateDirectory(Path.Combine(Path.GetDirectoryName(romFilePath), Path.GetFileNameWithoutExtension(romFilePath)));
                                 }
 
-                                File.AppendAllText($@"{Path.GetDirectoryName(romFilePath)}\{Path.GetFileNameWithoutExtension(romFilePath)}\errorlog.log", $"[{DateTime.Now}] Failed to insert '{Path.GetFileName(file)}' into ROM. The compressed file is larger than before and has to be inserted manually." + Environment.NewLine);
+                                File.AppendAllText(Path.Combine(Path.GetDirectoryName(romFilePath), Path.GetFileNameWithoutExtension(romFilePath), "errorlog.log"), $"[{DateTime.Now}] Failed to insert '{Path.GetFileName(file)}' into ROM. The compressed file is larger than before and has to be inserted manually." + Environment.NewLine);
                                 errorCtr++;
                             }
                         }
@@ -307,7 +307,7 @@ namespace Taito_DeCompress
                     
                     if (errorCtr > 0)
                     {
-                        MessageBox.Show("Some errors occured while inserting compressed data into ROM.\nFor details go to " + $@"{Path.GetDirectoryName(romFilePath)}\{Path.GetFileNameWithoutExtension(romFilePath)}" + " and check 'errorlog.log'.\n\nFile has been saved to: " + romFilePath);
+                        MessageBox.Show("Some errors occured while inserting compressed data into ROM.\nFor details go to " + Path.Combine(Path.GetDirectoryName(romFilePath), Path.GetFileNameWithoutExtension(romFilePath)) + " and check 'errorlog.log'.\n\nFile has been saved to: " + romFilePath);
                     }
 
                     else
