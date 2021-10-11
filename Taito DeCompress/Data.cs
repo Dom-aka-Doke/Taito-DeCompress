@@ -75,7 +75,7 @@ namespace Taito_DeCompress
                 // Check if file already exists
                 if (File.Exists(saveFilePath) && !overwrite)
                 {
-                    DialogResult fileExistsDialogue = MessageBox.Show(saveFilePath + " already exisits!\n\nDo you want to proceed an overwrite this file?", "Attention!", MessageBoxButtons.YesNo);
+                    DialogResult fileExistsDialogue = MessageBox.Show(saveFilePath + " already exisits!\n\nDo you want to proceed and overwrite this file?", "Attention!", MessageBoxButtons.YesNo);
 
                     if (fileExistsDialogue == DialogResult.No)
                     {
@@ -220,7 +220,7 @@ namespace Taito_DeCompress
                             // Check if file already exists
                             if (File.Exists(saveFilePath) && !overwrite)
                             {
-                                DialogResult fileExistsDialogue = MessageBox.Show(saveFilePath + " already exisits!\n\nDo you want to proceed an overwrite this file?", "Attention!", MessageBoxButtons.YesNo);
+                                DialogResult fileExistsDialogue = MessageBox.Show(saveFilePath + " already exisits!\n\nDo you want to proceed and overwrite this file?", "Attention!", MessageBoxButtons.YesNo);
 
                                 if (fileExistsDialogue == DialogResult.No)
                                 {

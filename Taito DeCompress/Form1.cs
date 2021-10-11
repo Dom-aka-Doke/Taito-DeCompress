@@ -82,6 +82,11 @@ namespace Taito_DeCompress
 
                 foreach(string line in lines)
                 {
+                    if (line.StartsWith(";") || line == string.Empty)
+                    {
+                        continue;
+                    }
+
                     try
                     {
                         offsets.Add(Convert.ToInt32(line.ToLower().Split(';')[0].Split('x')[1].Trim(), 16));
