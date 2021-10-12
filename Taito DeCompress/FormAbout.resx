@@ -134,7 +134,7 @@ TAITO games for the SNES (Super Nintendo). Known games using this algorithms are
 1. create an offset table
 2. load ROM and offset table
 3. decompress data
-4. edit your data
+4. edit your decompressed data
 5. compress data
 6. insert data back into ROM
 

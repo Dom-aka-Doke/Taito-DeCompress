@@ -44,11 +44,11 @@
             // labelAboutCreators
             // 
             this.labelAboutCreators.AutoSize = true;
-            this.labelAboutCreators.Location = new System.Drawing.Point(6, 21);
+            this.labelAboutCreators.Location = new System.Drawing.Point(6, 19);
             this.labelAboutCreators.Name = "labelAboutCreators";
-            this.labelAboutCreators.Size = new System.Drawing.Size(147, 39);
+            this.labelAboutCreators.Size = new System.Drawing.Size(171, 26);
             this.labelAboutCreators.TabIndex = 5;
-            this.labelAboutCreators.Text = "Hacking: Svambo\r\nMastermind: ManakoDE\r\nEditor coding: Dom aka Doke";
+            this.labelAboutCreators.Text = "Masterminds: Svambo, ManakoDE\r\nEditor coding: Dom aka Doke";
             // 
             // labelAboutDisclaimer
             // 
@@ -61,7 +61,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 410);
+            this.button1.Location = new System.Drawing.Point(12, 398);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(438, 23);
             this.button1.TabIndex = 6;
@@ -84,7 +84,7 @@
             this.groupBox2.Controls.Add(this.labelAboutCreators);
             this.groupBox2.Location = new System.Drawing.Point(12, 103);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(438, 67);
+            this.groupBox2.Size = new System.Drawing.Size(438, 55);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Credits";
@@ -92,7 +92,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.labelDescription);
-            this.groupBox3.Location = new System.Drawing.Point(12, 176);
+            this.groupBox3.Location = new System.Drawing.Point(12, 164);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(438, 228);
             this.groupBox3.TabIndex = 9;
@@ -112,7 +112,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(462, 441);
+            this.ClientSize = new System.Drawing.Size(462, 427);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
