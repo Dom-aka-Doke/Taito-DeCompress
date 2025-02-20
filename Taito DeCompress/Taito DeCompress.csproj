@@ -80,6 +80,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Documents\Test ROM\Puzzle Bobble %28E%29\_compressed\0x04A096_compressed_Puzzle Bobble %28E%29_[3398].cmp" />
+    <None Include="Documents\Test ROM\Puzzle Bobble %28E%29\_compressed\0x04AE3C_compressed_Puzzle Bobble %28E%29_[11221].cmp" />
+    <None Include="Documents\Test ROM\Puzzle Bobble %28E%29\_compressed\0x057509_compressed_Puzzle Bobble %28E%29_[1414].cmp" />
+    <None Include="Documents\Test ROM\Puzzle Bobble %28E%29\_compressed\0x06EE71_compressed_Puzzle Bobble %28E%29_[145].cmp" />
+    <None Include="Documents\Test ROM\Puzzle Bobble %28E%29\_compressed\0x0713DA_compressed_Puzzle Bobble %28E%29_[1901].cmp" />
+    <None Include="Documents\Test ROM\Puzzle Bobble %28E%29\_compressed\0x071EE7_compressed_Puzzle Bobble %28E%29_[7514].cmp" />
+    <None Include="Documents\Test ROM\Puzzle Bobble %28E%29\_decompressed\0x04A096_decompressed_Puzzle Bobble %28E%29_[3398].dec" />
+    <None Include="Documents\Test ROM\Puzzle Bobble %28E%29\_decompressed\0x04AE3C_decompressed_Puzzle Bobble %28E%29_[11221].dec" />
+    <None Include="Documents\Test ROM\Puzzle Bobble %28E%29\_decompressed\0x057509_decompressed_Puzzle Bobble %28E%29_[1414].dec" />
+    <None Include="Documents\Test ROM\Puzzle Bobble %28E%29\_decompressed\0x06EE71_decompressed_Puzzle Bobble %28E%29_[145].dec" />
+    <None Include="Documents\Test ROM\Puzzle Bobble %28E%29\_decompressed\0x0713DA_decompressed_Puzzle Bobble %28E%29_[1901].dec" />
+    <None Include="Documents\Test ROM\Puzzle Bobble %28E%29\_decompressed\0x071EE7_decompressed_Puzzle Bobble %28E%29_[7514].dec" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -96,6 +108,11 @@
   <ItemGroup>
     <None Include="Graphics\open.ico" />
     <None Include="Graphics\table.ico" />
+    <Content Include="Documents\Offsets_Puzzle-Bobble_Bust-A-Move.txt" />
+    <Content Include="Documents\Readme.txt" />
+    <Content Include="Documents\Test ROM\Sample.txt" />
+    <Content Include="Graphics\logo.ico" />
+    <Content Include="Graphics\screenshot.png" />
     <Content Include="logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
