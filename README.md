@@ -1,6 +1,6 @@
 # TAITO DeCompress
 
-![screenshot](Graphics\screenshot.png)
+![screenshot](Taito%20DeCompress/Graphics/screenshot.png)
 
 This is a tool for decompressing, compressing and reinserting data into some SNES/SFC TAITO games like:
 
